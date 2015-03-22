@@ -20,10 +20,8 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		//'id',
-		array('label'=>'Full Name', 'value'=>$model->FullName),
-		'usertype',
-		'emp_username',
-		'upassword',
+		array('label'=>'Representative', 'value'=>$model->FullName),
+	
 	),
 )); ?>
 
