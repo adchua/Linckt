@@ -134,6 +134,26 @@ $this->menu=array(
         <?php }?>
         
    </tr>
+   <tr><td>
+       Total
+       </td>
+       <td colspan="6" style="text-align: right;"> <?php $en1=  PurchaseOrder::model()->findAll('client_id = :a', array(':a'=>$model->id));?>
+<?php if (count($en1) !== 0){?>
+    <?php foreach ($en1 as $row2) { ?>
+<?php $en2= PurchaseOrderline::model()->findAll('purchase_order_id = :a', array(':a'=>$row2->id));?>
+    <?php foreach ($en2 as $result) { ?>
+             <div style="font-size:14px;color:#000000;font-family:Times New Roman;">
+            <?php $sum += $result->productunitcost ;   ?> 
+            
+          
+             </div>
+<?php  }} 
+  
+        echo $sum    
+?> 
+        </td>
+        <?php }?>
+   </tr>
      
 </table>
 </center>
