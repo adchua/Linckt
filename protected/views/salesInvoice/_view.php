@@ -16,6 +16,6 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('purchase_order_id')); ?>:</b>
 	<?php echo CHtml::encode($data->purchase_order_id); ?>
 	<br />
-
+        <hr>
 
 </div>
