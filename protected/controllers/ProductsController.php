@@ -204,7 +204,7 @@ class ProductsController extends Controller
 	{
             $userid =Yii::app()->user->id;
             
-              if(Yii::app()->user->type==="Admin" || Yii::app()->user->type==="Regular" || Yii::app()->user->type==="Client" ) {
+              if(Yii::app()->user->type==="Admin" || Yii::app()->user->type==="Regular"  ) {
 		$dataProvider=new CActiveDataProvider('Products');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -213,6 +213,14 @@ class ProductsController extends Controller
                   $dataProvider=new CActiveDataProvider('Products' ,  array(
                     'criteria'=>array(
                     'condition'=>'supplier_id='.$userid,
+              )));
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
+              }else if(Yii::app()->user->type==="Client"){
+                  $dataProvider=new CActiveDataProvider('Products' ,  array(
+                    'criteria'=>array(
+                    'condition'=>'supplier_id=17',
               )));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
