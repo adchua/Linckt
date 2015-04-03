@@ -22,7 +22,39 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-             array('label'=>'Employee ', 'value'=>$model->Users->FullName),
-		'purchase_order_id',
+             
 	),
 )); ?>
+
+
+<?php $en1=  PaymentReceipt::model()->findAll('sales_invoice_id = :a', array(':a'=>$model->id));?>
+ <?php foreach ($en1 as $row2) { 
+
+      $this->widget('zii.widgets.CDetailView', array(
+	'data'=>$row2,
+	'attributes'=>array(
+             array('label'=>'ID of Payment', 'value'=>$row2->id),
+            array('label'=>'Client Company', 'value'=>$row2->ClientCompany->companyname),
+             'or_number',
+            'pr_paymenttype',
+            'pr_receipttpye',
+               'pr_status',
+		'pr_amount',
+		'pr_date',
+		'sales_invoice_id',
+             array('label'=>'Employee', 'value'=>$model->Users->FullName),
+             array(
+		                'name'=>'Receipt Picture',
+		                'type'=>'raw',
+		                'value'=>html_entity_decode(CHtml::image(Yii::app()->controller->createUrl('PaymentReceipt/loadImage', array('id'=>$model->id))
+                                ,'alt'
+                                ,array('width'=>500)
+                                )),
+		                ),
+            
+	),
+)); ?>
+
+
+ <?php }?>
+
